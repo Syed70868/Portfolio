@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   FaEnvelope,
   FaPhone,
@@ -8,7 +8,6 @@ import {
   FaPaperPlane,
 } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
-import Button from './Button';
 
 // Initialize EmailJS with your Public Key
 emailjs.init('YOUR_PUBLIC_KEY_HERE');
