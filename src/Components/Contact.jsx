@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FaEnvelope,
   FaPhone,
@@ -7,7 +7,11 @@ import {
   FaLinkedin,
   FaPaperPlane,
 } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 import Button from './Button';
+
+// Initialize EmailJS with your Public Key
+emailjs.init('YOUR_PUBLIC_KEY_HERE');
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -61,15 +65,28 @@ const Contact = () => {
     if (!validateForm()) return;
 
     setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
+
+    try {
+      // Send email to your email address
+      await emailjs.send('service_ekhn4n8', 'template_vn7cpsu', {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'syedaliasghar355@gmail.com',
+      });
+
       setSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
       setLoading(false);
+
       // Reset the success message after 5 seconds
       setTimeout(() => setSubmitted(false), 5000);
-    }, 2000);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Failed to send message. Please try again.');
+      setLoading(false);
+    }
   };
 
   return (

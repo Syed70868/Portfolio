@@ -9,12 +9,20 @@ import {
 } from 'react-icons/fa';
 
 import profileImg from '../assets/profile.jpeg';
+import CV from '../assets/Syed-Ali-Asghar-CV.pdf';
 
 export const assets = {
     profileImg,
+    CV,
 };
 
-export const navMenus = ['Home', 'Work', 'Skills', 'About', 'Contact'];
+export const navMenus = [
+    { label: 'Home', path: '/' },
+    { label: 'Projects', path: '/projects' },
+    { label: 'About', path: '/about' },
+    { label: 'Contact', path: '/contact' },
+    { label: 'Resume', path: '/resume' },
+];
 
 export const skillsData = [
     {

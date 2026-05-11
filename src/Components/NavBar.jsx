@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { navMenus } from '../assets/asstes';
-import { FaArrowRight, FaBars, FaTimes } from 'react-icons/fa6';
+import { navMenus, assets } from '../assets/asstes';
+import { FaArrowRight, FaBars, FaX } from 'react-icons/fa6';
 import Button from './Button';
 
 const NavBar = () => {
@@ -39,13 +39,13 @@ const NavBar = () => {
               onClick={toggleMenu}
               className="text-white hover:text-red-600 transition-colors duration-300"
             >
-              {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              {isMenuOpen ? <FaX size={24} /> : <FaBars size={24} />}
             </button>
           </div>
 
           {/* Desktop Button */}
           <div className="hidden md:block">
-            <Button text={'Resume'} href={'/Syed-Ali-Asghar-CV.pdf'} />
+            <Button text={'Resume'} href={assets.CV} />
           </div>
         </div>
 
@@ -64,7 +64,7 @@ const NavBar = () => {
                 </a>
               ))}
               <div className="pt-4 border-t border-gray-800">
-                <Button text={'Resume'} href={'/Syed-Ali-Asghar-CV.pdf'} />
+                <Button text={'Resume'} href={assets.CV} />
               </div>
             </div>
           </div>
