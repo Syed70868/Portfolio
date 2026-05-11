@@ -37,7 +37,9 @@ const Typewriter = ({ text = [], className = '', prefix = 'I am ' }) => {
   return (
     <span className={`${className} text-amber-50 inline-block`}>
       {prefix}
-      <span className="text-red-800 text-[2.5rem]">{display}</span>
+      <span className="text-red-800 text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem]">
+        {display}
+      </span>
       <span className="my-underline-r-2  my-underline-gray-600/50 ml-1 animate-pulse"></span>
     </span>
   );

@@ -133,14 +133,20 @@ export const profileData = [
     {
         icon: FaSchool,
         title: 'Education',
-        technologies: ['Matric'],
+        technologies: [
+            'Self-Taught Web Developer',
+            'Continuous Learning through Projects',
+            'Online Courses & Documentation',
+            'Practical Experience in Modern Technologies',
+        ],
     },
 
     {
         icon: FaProjectDiagram,
         title: 'Projects',
         technologies: [
-            'Built 25+ Shopify Stores',
+            'Built 50+ Shopify Stores',
+            'Developed 25+ WordPress Websites',
             'Custom Shopify Sections',
             'Responsive Websites',
             'Modern Portfolio Designs',

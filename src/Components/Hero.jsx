@@ -38,8 +38,8 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <Button text={'View My Work'} />
-              <Button text={'Contact Me'} />
+              <Button text={'View My Work'} href={'#work'} />
+              <Button text={'Contact Me'} href={'#contact'} />
             </div>
           </div>
 
