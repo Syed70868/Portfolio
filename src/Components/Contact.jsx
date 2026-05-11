@@ -33,17 +33,43 @@ const Contact = () => {
       ...prev,
       [name]: value,
     }));
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: '',
+      }));
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you can add logic to send the form data to your backend
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setFormData({ name: '', email: '', message: '' });
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    if (!formData.subject.trim()) newErrors.subject = 'Subject is required';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
-    // Reset the success message after 3 seconds
-    setTimeout(() => setSubmitted(false), 3000);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    setLoading(true);
+    // Simulate API call
+    setTimeout(() => {
+      console.log('Form submitted:', formData);
+      setSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setLoading(false);
+      // Reset the success message after 5 seconds
+      setTimeout(() => setSubmitted(false), 5000);
+    }, 2000);
   };
 
   return (
@@ -146,7 +172,7 @@ const Contact = () => {
                   htmlFor="name"
                   className="block text-sm font-semibold text-white mb-2"
                 >
-                  Your Name
+                  Full Name *
                 </label>
                 <input
                   type="text"
@@ -154,10 +180,12 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-[#1a1a1a] border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-red-600 transition"
-                  placeholder="John Doe"
+                  className={`w-full px-4 py-3 rounded-lg bg-[#1a1a1a] border text-white placeholder-gray-500 focus:outline-none transition ${
+                    errors.name ? 'border-red-500' : 'border-gray-700 focus:border-red-600'
+                  }`}
+                  placeholder="Enter your full name"
                 />
+                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
               </div>
 
               {/* Email Input */}
@@ -166,7 +194,7 @@ const Contact = () => {
                   htmlFor="email"
                   className="block text-sm font-semibold text-white mb-2"
                 >
-                  Your Email
+                  Email Address *
                 </label>
                 <input
                   type="email"
@@ -174,10 +202,34 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-[#1a1a1a] border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-red-600 transition"
-                  placeholder="john@example.com"
+                  className={`w-full px-4 py-3 rounded-lg bg-[#1a1a1a] border text-white placeholder-gray-500 focus:outline-none transition ${
+                    errors.email ? 'border-red-500' : 'border-gray-700 focus:border-red-600'
+                  }`}
+                  placeholder="your.email@example.com"
                 />
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+              </div>
+
+              {/* Subject Input */}
+              <div>
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-semibold text-white mb-2"
+                >
+                  Subject *
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-3 rounded-lg bg-[#1a1a1a] border text-white placeholder-gray-500 focus:outline-none transition ${
+                    errors.subject ? 'border-red-500' : 'border-gray-700 focus:border-red-600'
+                  }`}
+                  placeholder="What's this about?"
+                />
+                {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
               </div>
 
               {/* Message Input */}
@@ -186,32 +238,45 @@ const Contact = () => {
                   htmlFor="message"
                   className="block text-sm font-semibold text-white mb-2"
                 >
-                  Message
+                  Message *
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  required
                   rows="5"
-                  className="w-full px-4 py-3 rounded-lg bg-[#1a1a1a] border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-red-600 transition resize-none"
-                  placeholder="Your message here..."
+                  className={`w-full px-4 py-3 rounded-lg bg-[#1a1a1a] border text-white placeholder-gray-500 focus:outline-none transition resize-none ${
+                    errors.message ? 'border-red-500' : 'border-gray-700 focus:border-red-600'
+                  }`}
+                  placeholder="Tell me about your project or inquiry..."
                 ></textarea>
+                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full px-6 py-3 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 transition duration-300 flex items-center justify-center gap-2"
+                disabled={loading}
+                className="w-full px-6 py-3 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 disabled:bg-red-800 disabled:cursor-not-allowed transition duration-300 flex items-center justify-center gap-2"
               >
-                Send Message
+                {loading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <FaPaperPlane className="w-5 h-5" />
+                    Send Message
+                  </>
+                )}
               </button>
 
               {/* Success Message */}
               {submitted && (
                 <div className="p-4 rounded-lg bg-green-600/20 border border-green-600 text-green-400 text-center">
-                  Thank you! I'll get back to you soon.
+                  Thank you! Your message has been sent successfully. I'll get back to you soon.
                 </div>
               )}
             </form>
