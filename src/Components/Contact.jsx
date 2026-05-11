@@ -181,11 +181,15 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-lg bg-[#1a1a1a] border text-white placeholder-gray-500 focus:outline-none transition ${
-                    errors.name ? 'border-red-500' : 'border-gray-700 focus:border-red-600'
+                    errors.name
+                      ? 'border-red-500'
+                      : 'border-gray-700 focus:border-red-600'
                   }`}
                   placeholder="Enter your full name"
                 />
-                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                )}
               </div>
 
               {/* Email Input */}
@@ -203,11 +207,15 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-lg bg-[#1a1a1a] border text-white placeholder-gray-500 focus:outline-none transition ${
-                    errors.email ? 'border-red-500' : 'border-gray-700 focus:border-red-600'
+                    errors.email
+                      ? 'border-red-500'
+                      : 'border-gray-700 focus:border-red-600'
                   }`}
                   placeholder="your.email@example.com"
                 />
-                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
               </div>
 
               {/* Subject Input */}
@@ -225,11 +233,15 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-lg bg-[#1a1a1a] border text-white placeholder-gray-500 focus:outline-none transition ${
-                    errors.subject ? 'border-red-500' : 'border-gray-700 focus:border-red-600'
+                    errors.subject
+                      ? 'border-red-500'
+                      : 'border-gray-700 focus:border-red-600'
                   }`}
                   placeholder="What's this about?"
                 />
-                {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
+                {errors.subject && (
+                  <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
+                )}
               </div>
 
               {/* Message Input */}
@@ -247,11 +259,15 @@ const Contact = () => {
                   onChange={handleChange}
                   rows="5"
                   className={`w-full px-4 py-3 rounded-lg bg-[#1a1a1a] border text-white placeholder-gray-500 focus:outline-none transition resize-none ${
-                    errors.message ? 'border-red-500' : 'border-gray-700 focus:border-red-600'
+                    errors.message
+                      ? 'border-red-500'
+                      : 'border-gray-700 focus:border-red-600'
                   }`}
                   placeholder="Tell me about your project or inquiry..."
                 ></textarea>
-                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                )}
               </div>
 
               {/* Submit Button */}
@@ -276,7 +292,8 @@ const Contact = () => {
               {/* Success Message */}
               {submitted && (
                 <div className="p-4 rounded-lg bg-green-600/20 border border-green-600 text-green-400 text-center">
-                  Thank you! Your message has been sent successfully. I'll get back to you soon.
+                  Thank you! Your message has been sent successfully. I'll get
+                  back to you soon.
                 </div>
               )}
             </form>
