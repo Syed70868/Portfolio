@@ -1,5 +1,4 @@
-import React from 'react';
-import { skillsData } from '../assets/asstes';
+import { skillsData } from '../assets/assets';
 
 const Skills = () => {
   return (

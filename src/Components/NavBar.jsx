@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { navMenus, assets } from '../assets/asstes';
-import { FaArrowRight, FaBars, FaX } from 'react-icons/fa6';
+import { useState } from 'react';
+import { navMenus, assets } from '../assets/assets';
+import { FaBars, FaX } from 'react-icons/fa6';
 import Button from './Button';
 
 const NavBar = () => {
@@ -25,10 +25,10 @@ const NavBar = () => {
             {navMenus.map((item, index) => (
               <a
                 key={index}
-                href={`#${item}`}
+                href={`#${item.label.toLowerCase()}`}
                 className="hover:text-red-600 font-bold transition-all duration-500 my-underline"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>
@@ -56,11 +56,11 @@ const NavBar = () => {
               {navMenus.map((item, index) => (
                 <a
                   key={index}
-                  href={`#${item}`}
+                  href={`#${item.label.toLowerCase()}`}
                   className="text-white hover:text-red-600 font-bold transition-all duration-300 text-center py-2 px-4 rounded-lg hover:bg-red-600/10"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
               <div className="pt-4 border-t border-gray-800">

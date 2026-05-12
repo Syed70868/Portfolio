@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   FaEnvelope,
   FaPhone,
@@ -61,24 +61,12 @@ const Contact = () => {
 
     setLoading(true);
 
-    try {
-      // Store form data locally or send to a backend
-      console.log('Form submitted:', formData);
-      
-      // Simulate form submission delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      setSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setLoading(false);
-
-      // Reset the success message after 5 seconds
-      setTimeout(() => setSubmitted(false), 5000);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Failed to send message. Please try again.');
-      setLoading(false);
-    }
+    setSubmitted(true);
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    setLoading(false);
+    setTimeout(() => setSubmitted(false), 5000);
   };
 
   return (
@@ -301,8 +289,8 @@ const Contact = () => {
               {/* Success Message */}
               {submitted && (
                 <div className="p-4 rounded-lg bg-green-600/20 border border-green-600 text-green-400 text-center">
-                  Thank you! Your message has been received. I'll get back to you
-                  soon.
+                  Thank you! Your message has been received. I'll get back to
+                  you soon.
                 </div>
               )}
             </form>

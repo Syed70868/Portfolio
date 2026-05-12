@@ -8,8 +8,8 @@ import {
     FaProjectDiagram,
 } from 'react-icons/fa';
 
-import profileImg from '../assets/profile.jpeg';
-import CV from '../assets/Syed-Ali-Asghar-CV.pdf';
+import profileImg from './profile.jpeg';
+import CV from './Syed-Ali-Asghar-CV.pdf';
 
 export const assets = {
     profileImg,

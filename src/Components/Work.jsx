@@ -1,5 +1,4 @@
-import React from 'react';
-import { projectData } from '../assets/asstes';
+import { projectData } from '../assets/assets';
 
 const Work = () => {
   return (

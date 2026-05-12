@@ -1,4 +1,3 @@
-import React from 'react';
 import NavBar from '../Components/NavBar';
 import Work from '../Components/Work';
 import Button from '../Components/Button';

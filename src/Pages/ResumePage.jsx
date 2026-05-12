@@ -1,6 +1,5 @@
-import React from 'react';
 import NavBar from '../Components/NavBar';
-import { assets, profileData } from '../assets/asstes';
+import { assets, profileData } from '../assets/assets';
 
 const ResumePage = () => {
   return (

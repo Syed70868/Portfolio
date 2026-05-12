@@ -1,7 +1,6 @@
-import React from 'react';
 import Typewriter from '../Components/Typewriter';
 import Button from './Button';
-import { assets } from '../assets/asstes';
+import { assets } from '../assets/assets';
 
 const Hero = () => {
   return (
